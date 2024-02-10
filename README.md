@@ -14,13 +14,18 @@ O projeto EUA Afora visa mostrar o mundo existente além das fronteiras do local
 
 #### Express
 
-Nosso framework amado, usado para a criação do servidor. Através dele é possível: inicia o servidor em localhost:3000 com a recarga automática habilitada, através do comando "npm run dev"; realizar o roteamento para as rotas que retornam os usuários e cartões previamente criados - no momento, as solicitações implementadas foram com o método GET; obter endereços para os arquivos de dados com o módulo "path"; ler os arquivos atráves dos métodos do módulo "fs"; e incluir módulos com o "require".
+Nosso framework amado, usado para a criação do servidor. Através dele é possível: inicia o servidor em localhost:3000 com a recarga automática habilitada, através do comando "npm run dev"; realizar o roteamento para as rotas que retornam os usuários e cartões previamente criados - no momento, as solicitações implementadas foram com o método GET; obter endereços para os arquivos de dados com o módulo "path"; ler os arquivos atráves dos métodos do módulo "fs"; incluir módulos com o "require" e middlewares.
 
 ![Criação do servidor express](image-1.png)
+
+![Um middleware que mostra no console o método e a rota da solicitação](image-3.png)
+_Aqui você vê um middleware usado que mostra no console o método e a rota da solicitação._
 
 #### Linter
 
 Os linters são usados para encontrar erros e manter a consistência do código. Por ser pré-configurado, ele permite a configuração das regras, e para esta etapa, foi adicionada uma exceção para o uso do underline.
+
+![Um arquivo linter](image-2.png)
 
 #### Postman
 
