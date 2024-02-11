@@ -14,19 +14,19 @@ fs.readFile(usersPath, (err, data) => {
 
 router.get("/users", (req, res) => {
   if (users.error) {
-    res.status(500).send(users);
+    res.status(500).json(users);
   }
-  return res.send(users);
+  return res.json(users);
 });
 
 router.get("/users/:id", (req, res) => {
   const { id } = req.params;
   const user = users.find((user) => user._id === id);
   if (!user) {
-    res.status(404).send({ message: "ID do usuário não encontrado" });
+    res.status(404).json({ message: "ID do usuário não encontrado" });
     return;
   }
-  res.send(user);
+  res.json(user);
 });
 
 module.exports = router;

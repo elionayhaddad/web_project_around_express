@@ -14,9 +14,9 @@ fs.readFile(cardsPath, (err, data) => {
 
 router.get("/cards", (req, res) => {
   if (cards.error) {
-    res.status(500).send(cards);
+    res.status(500).json(cards);
   }
-  return res.send(cards);
+  return res.json(cards);
 });
 
 router.get("/cards/:id", (req, res) => {
@@ -24,10 +24,10 @@ router.get("/cards/:id", (req, res) => {
   const card = cards.find((card) => card._id === id);
 
   if (!card) {
-    res.status(404).send({ message: "ID do cartão não encontrado" });
+    res.status(404).json({ message: "ID do cartão não encontrado" });
     return;
   }
-  res.send(card);
+  res.json(card);
 });
 
 module.exports = router;
