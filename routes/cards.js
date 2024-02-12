@@ -1,5 +1,7 @@
 const router = require("express").Router();
+
 const fs = require("fs");
+
 const path = require("path");
 
 const cardsPath = path.join(__dirname, "..", "data", "cards.json");
@@ -21,7 +23,7 @@ router.get("/cards", (req, res) => {
 
 router.get("/cards/:id", (req, res) => {
   const { id } = req.params;
-  const card = cards.find((card) => card._id === id);
+  const card = cards.find((item) => item._id === id);
 
   if (!card) {
     res.status(404).json({ message: "ID do cartão não encontrado" });

@@ -1,4 +1,8 @@
 {
-  "extends": "airbnb-base"
+  "extends": "airbnb-base",
+  "rules": {
+    "no-underscore-dangle": "off",
+    "quotes": ["error", "double"],
+    "no-console":0
+  }
 }
-/*eslint no-underscore-dangle: "off"*/
