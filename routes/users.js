@@ -1,32 +1,23 @@
 const router = require("express").Router();
-const fs = require("fs");
-const path = require("path");
-
-const usersPath = path.join(__dirname, "..", "data", "users.json");
+const { getUser, getUserById } = require("../controllers/users");
 let users = [];
-fs.readFile(usersPath, (err, data) => {
-  if (err) {
-    users = { message: "Não foi possível ler o arquivo" };
-    return;
+
+router.get("/users", async (req, res) => {
+  try {
+    const users = await getUser();
+    return res.json(users);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
   }
-  users = JSON.parse(data);
 });
 
-router.get("/users", (req, res) => {
-  if (users.error) {
-    res.status(500).json(users);
+router.get("/users/:id", async (req, res) => {
+  try {
+    const users = await getUserById(req, res);
+    return res.json(users);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
   }
-  return res.json(users);
-});
-
-router.get("/users/:id", (req, res) => {
-  const { id } = req.params;
-  const user = users.find((item) => item._id === id);
-  if (!user) {
-    res.status(404).json({ message: "ID do usuário não encontrado" });
-    return;
-  }
-  res.json(user);
 });
 
 module.exports = router;
