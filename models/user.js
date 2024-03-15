@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const linkRegex = /^https?:\/\//;
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,12 +17,6 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
       required: true,
-      validate: {
-        validator: (v) => {
-          return linkRegex.test(v);
-        },
-        message: (props) => `${props.value} is not a url válido!`,
-      },
     },
   },
   { versionKey: false }
