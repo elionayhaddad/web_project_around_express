@@ -2,7 +2,7 @@ class CustomHttpErrors extends Error {
   constructor(message, name, status) {
     super(message);
     this.name = name;
-    this.status = status;
+    this.status = status || 500;
   }
 }
 

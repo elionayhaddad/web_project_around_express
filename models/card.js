@@ -1,34 +1,30 @@
 const mongoose = require("mongoose");
-const linkRegex = /^https?:\/\//;
 
-const cardSchema = new mongoose.Schema({
-  name: {
-    type: string,
-    required: true,
-    minlength: 2,
-    maxlength: 30,
-  },
-  link: {
-    type: string,
-    required: true,
-    validate: {
-      validator: (v) => {
-        return linkRegex.test(v);
-      },
-      message: (props) => `${props.value} is not a url válido!`,
+const cardSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      minlength: 2,
+      maxlength: 30,
+    },
+    link: {
+      type: String,
+      required: true,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
+    likes: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    ],
+    createdAt: {
+      type: Date,
     },
   },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-    required: true,
-  },
-  likes: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  ],
-  createdAt: {
-    type: Date,
-  },
-});
+  { versionKey: false }
+);
 
-module.exports("card", cardSchema);
+module.exports = mongoose.model("card", cardSchema);

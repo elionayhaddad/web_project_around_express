@@ -28,7 +28,6 @@ router.post("/users", async (req, res) => {
     const newUser = await createUser(body);
     return res.json(newUser);
   } catch (error) {
-    console.log(error);
     res.status(error.status).json({ message: error.message });
   }
 });

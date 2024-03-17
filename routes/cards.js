@@ -1,35 +1,35 @@
 const router = require("express").Router();
+const { getCard, createCard, deleteCard } = require("../controllers/cards");
 
-const fs = require("fs");
-
-const path = require("path");
-
-const cardsPath = path.join(__dirname, "..", "data", "cards.json");
-let cards = [];
-fs.readFile(cardsPath, (err, data) => {
-  if (err) {
-    cards = { message: "Não foi possível ler o aquivo" };
-    return;
+router.get("/cards", async (req, res) => {
+  try {
+    const cards = await getCard();
+    return res.json(cards);
+  } catch (error) {
+    res.status(error.status).json({ message: error.message });
   }
-  cards = JSON.parse(data);
 });
 
-router.get("/cards", (req, res) => {
-  if (cards.error) {
-    res.status(500).json(cards);
+router.post("/cards", async (req, res) => {
+  const { body } = req;
+  const owner = req.user._id;
+  try {
+    const newCard = await createCard(body, owner);
+    return res.status(201).json(newCard);
+  } catch (error) {
+    res.status(error.status).json({ message: error.message });
   }
-  return res.json(cards);
 });
 
-router.get("/cards/:id", (req, res) => {
+router.delete("/cards/:id", async (req, res) => {
   const { id } = req.params;
-  const card = cards.find((item) => item._id === id);
-
-  if (!card) {
-    res.status(404).json({ message: "ID do cartão não encontrado" });
-    return;
+  try {
+    const remCard = await deleteCard(id);
+    res.status(201).json("Cartão deletado com sucesso!");
+    return remCard;
+  } catch (error) {
+    res.status(error.status).json({ message: error.message });
   }
-  res.json(card);
 });
 
 module.exports = router;

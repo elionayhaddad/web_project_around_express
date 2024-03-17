@@ -6,9 +6,15 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-async function connectDataBase() {
-  await mongoose.connect("mongodb://127.0.0.1.:27017/aroundb", {});
-  console.log("Database connected");
+async function connectDataBase(req, res) {
+  try {
+    await mongoose.connect("mongodb://127.0.0.1.:27017/aroundb", {});
+    console.log("Database connected");
+  } catch {
+    res.status(500).json({
+      message: "Não foi possível conectar. Tente novamente mais tarde!",
+    });
+  }
 }
 
 connectDataBase();
@@ -22,7 +28,17 @@ function isInvalidUrl(req, res) {
 }
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  req.user = {
+    _id: "65eb9fb6a6f4066450ce45f3",
+  };
+
+  next();
+});
+
 app.use("/", logger, usersRouter, cardsRouter);
+
 app.use("/*", isInvalidUrl);
 
 app.listen(PORT, () => {
