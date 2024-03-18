@@ -25,7 +25,7 @@ router.delete("/cards/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const remCard = await deleteCard(id);
-    res.status(201).json("Cartão deletado com sucesso!");
+    res.status(201).json({ message: "Cartão deletado com sucesso!" });
     return remCard;
   } catch (error) {
     res.status(error.status).json({ message: error.message });
