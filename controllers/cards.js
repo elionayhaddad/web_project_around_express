@@ -48,4 +48,34 @@ module.exports = {
       );
     }
   },
+  likeCard: async (id, myUser) => {
+    try {
+      return await card.findByIdAndUpdate(
+        id,
+        { $addToSet: { likes: myUser } },
+        { new: true }
+      );
+    } catch (error) {
+      throw new CustomHttpErrors(
+        "Ocorreu um erro no servidor",
+        "Not Available",
+        500
+      );
+    }
+  },
+  dislikeCard: async (id, myUser) => {
+    try {
+      return await card.findByIdAndUpdate(
+        id,
+        { $pull: { likes: myUser } },
+        { new: true }
+      );
+    } catch (error) {
+      throw new CustomHttpErrors(
+        "Ocorreu um erro no servidor",
+        "Not Available",
+        500
+      );
+    }
+  },
 };
