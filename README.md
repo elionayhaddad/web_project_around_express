@@ -33,6 +33,10 @@ Usado para testar as solicitações do servidor.
 
 ![Teste do servidor para a rota /users](image.png)
 
+#### MongoDB e Mongoose
+
+Para criação de banco de dados, foram usados o software MongoDB, um software de banco de dados orientado a documentos livre, e a biblioteca de modelagem de dados de objeto JS: Mongoose. Este permite utilizar de métodos para criar, ler, atualizar e deletar documentos.
+
 #### Estilo de código
 
 Foi usado: camelCase para os nomes de funções e variáveis; substantivos somente como nomes de variáveis, que descrevem o que está armazenado neles; nomes descritivos para as funções, mostrando o que elas fazem.
