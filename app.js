@@ -1,17 +1,17 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const usersRouter = require("./routes/users");
-const cardsRouter = require("./routes/cards");
+import express from "express";
+import mongoose from "mongoose";
+import usersRouter from "./routes/users.js";
+import cardsRouter from "./routes/cards.js";
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
 async function connectDataBase(req, res) {
   try {
-    await mongoose.connect("mongodb://127.0.0.1.:27017/aroundb", {});
+    await mongoose.connect("mongodb://127.0.0.1:27017/aroundb", {});
     console.log("Database connected");
-  } catch {
-    res.status(500).json({
+  } catch (error) {
+    return res.status(500).json({
       message: "Não foi possível conectar. Tente novamente mais tarde!",
     });
   }
