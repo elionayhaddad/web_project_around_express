@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+const User = require("../models/User");
 const CustomHttpErrors = require("../errors/CustomHttpErrors");
 const linkRegex = /^https?:\/\//;
 
@@ -98,7 +98,7 @@ const updateAvatarUser = async (body, myUser, req, res) => {
   }
 };
 
-export default {
+module.exports = {
   createUser,
   getUser,
   getUserById,

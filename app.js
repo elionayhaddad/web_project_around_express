@@ -1,7 +1,7 @@
-import express from "express";
-import mongoose from "mongoose";
-import usersRouter from "./routes/users.js";
-import cardsRouter from "./routes/cards.js";
+const express = require("express");
+const mongoose = require("mongoose");
+const usersRouter = require("./routes/users");
+const cardsRouter = require("./routes/cards");
 const { PORT = 3000 } = process.env;
 
 const app = express();

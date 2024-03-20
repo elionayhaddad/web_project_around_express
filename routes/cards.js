@@ -1,11 +1,11 @@
 const router = require("express").Router();
-import {
+const {
   getCard,
   createCard,
   deleteCard,
   likeCard,
   dislikeCard,
-} from "../controllers/cards.js";
+} = require("../controllers/cards.js");
 
 router.get("/cards", async (req, res) => {
   try {
@@ -62,4 +62,4 @@ router.delete("/cards/:id/likes", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

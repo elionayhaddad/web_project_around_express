@@ -1,4 +1,4 @@
-import Card from "../models/Card.js";
+const Card = require("../models/Card");
 const CustomHttpErrors = require("../errors/CustomHttpErrors");
 
 const getCard = async (res, req) => {
@@ -77,7 +77,7 @@ const dislikeCard = async (id, myUser) => {
   }
 };
 
-export default {
+module.exports = {
   getCard,
   createCard,
   deleteCard,
