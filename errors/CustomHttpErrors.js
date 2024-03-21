@@ -6,4 +6,4 @@ class CustomHttpErrors extends Error {
   }
 }
 
-module.exports = CustomHttpErrors;
+export default CustomHttpErrors;
