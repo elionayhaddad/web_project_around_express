@@ -2,14 +2,16 @@ import Card from "../models/card.js";
 import CustomHttpErrors from "../errors/CustomHttpErrors.js";
 
 const controllerCards = {
-  getCard: async (res, req) => {
+  getCard: async () => {
     try {
       const cards = await Card.find();
       if (cards.length === 0) {
-        return res.status(200).json({ message: "Não há cartões existentes" });
+        const noLength = { message: "Não há cartões existentes" };
+        return noLength;
       }
       return cards;
     } catch (error) {
+      console.log(error);
       throw new CustomHttpErrors(
         "Não foi possível completar sua solicitação. Tente novamente mais tarde!",
         "Not Available",
